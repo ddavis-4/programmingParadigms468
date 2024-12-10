@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Inclass Problem: More on JavaScript Canvas</title>
+	</head>
+	<body>
+		<div style="text-align: center;">
+			<canvas>
+
+			</canvas>
+		</div>
+
+		<script>
+			let cx = document.querySelector("canvas").getContext("2d");
+			
+			 cx.beginPath();
+			 cx.moveTo(20, 70);
+			 //control = (60, 10), goal = (70, 80)
+			 cx.quadraticCurveTo(60, 10, 70, 80);
+			 cx.lineTo(60, 10);
+			 cx.closePath();
+			 cx.stroke();
+
+			//this is for the bezier curve
+			cx.beginPath(); //start path
+			cx.moveTo(20, 90); //move to corner of trapazoid
+			//control1 = (20,10); control2 = (100, 10); goal = (60, 90);
+			cx.bezierCurveTo(20,10,100,10,60,90);
+			cx.lineTo(100, 10); 
+			cx.lineTo(20, 10);
+			cx.closePath();
+			cx.fill();
+
+			cx.beginPath();
+			// center = (150, 50); radius = 40 angle = 0 to pi
+			cx.arc(150, 50, 40, 0, Math.PI);
+			cx.stroke();
+			
+			cx.beginPath();
+			cx.arc(130, 40, 10, 0,  2 * Math.PI);
+			cx.arc(170, 40, 10, 0, 2 * Math.PI);
+			cx.fill();
+		</script>
+	</body>
+</html>

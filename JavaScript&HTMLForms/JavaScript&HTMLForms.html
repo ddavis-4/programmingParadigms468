@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript & HTML Form</title>
+</head>
+<body>
+  <h1 style="text-align: center;">0010(2) + 0100(4) + 1000(8) = 14</h1> <!__added by me__>
+  <div style = "text-align: center;"> <!__added by me__>
+    <select multiple> <!__select with the option to select multiple__>
+      <option value="1">0001</option> <!__option 0001 with the value set to 1 __>
+      <option value="2">0010</option> <!__value set to 2__>
+      <option value="4">0100</option> <!__value set to 4 __>
+      <option value="8">1000</option> <!__value set to 8  __>
+    </select> = <span id="output">0</span> <!__this is where the return of the function is sent id = output __>
+  </div> <!__added by me__>
+<script>
+  let select = document.querySelector("select"); //sets select to be the html select value
+  let output = document.querySelector("#output"); //sets value of output to be the html value
+  select.addEventListener("change", () => { // looks for when an option is selected
+    let number = 0; // sets number = to 0
+    for (let option of Array.from(select.options)) { // for option in the select tag in the html
+      if (option.selected) { // if an option is selected
+        number += Number(option.value); // converts to a real number and adds value to variable number
+      }
+    }
+    output.textContent = number; // return number when there is nothing left selected.
+  });
+</script>
+</body>

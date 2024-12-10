@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>In-Class Assignment: HTML_Forms</title>
+</head>
+<body>
+<!__In-Class Problem: HTML Forms
+Create 3 fields: First Name: (required), Middle Name: (optional), Last Name: (required)
+Have JS Autofocus to "First Name: "
+Skips the option Middle name field when tabbing through the form
+__>
+    <div style="text-align: center;">
+        <form action="/action_page.php">
+            <p>First Name: <input type="text" id = "firstname"> (Required)</p>
+            <p>Middle Name: <input type = 'text' tabindex = -1> (Optional)</p>
+            <p>Last Name: <input type="text"> (Required)</p>
+        </form>
+    </div>
+</body>
+
+<script>
+    document.getElementById("firstname").focus();
+</script>
+</html>

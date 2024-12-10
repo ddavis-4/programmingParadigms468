@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Inclass Problem: Javascript SVG and Canvas</title>
+	</head>
+	<body>
+		<div style="text-align: center;">
+			<h1>Ta-Da:</h1>
+			<canvas>
+				
+			</canvas>
+		</div>
+	</body>
+		<script>
+			let cx = document.querySelector("canvas").getContext("2d");
+			cx.beginPath(); //start path
+			cx.moveTo(30, 30); //move to corner of trapazoid
+			cx.lineTo(80, 30); 
+			cx.lineTo(90, 80);
+			cx.lineTo(20, 80);
+			cx.closePath();
+
+			cx.lineWidth = 5;
+			cx.stroke();
+		</script>
+	</body>
+</html>

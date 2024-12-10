@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes App</title>
+</head>
+<body>
+  <h1>Notes App</h1>
+  <p>This website keeps a file called notes.txt for you.</p>
+  <p>To create a notes.txt type in the box press the "Save" button.</p>
+  <p>You can edit the file and save it again.</p>
+  <p>Next time you access this page, it will load the notes.txt you saved last time.</p>
+  <form>
+    <textarea id = "notes" rows = "10" cols = "50"></textarea><br>
+    <button type = "button" onclick = "saveNotes()">Save</button>
+  </form>
+
+  <script>
+    fetch("notes.txt").response(resp => resp.text()).then(file => {
+      textarea.value = file;
+    });
+
+    function saveNotes() {
+      fetch('notes.txt', {
+        method: 'PUT',
+        body: textarea.value});
+    }
+  </script>
+</body>
+</html>
