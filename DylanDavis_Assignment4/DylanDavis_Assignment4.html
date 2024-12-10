@@ -1,0 +1,65 @@
+<!__
+Dylan Davis
+EECS468
+Assignment 4
+Last edit: 10/2/2023
+Simple tab function
+ __>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Davis' Go KU! Page</title> <!__name of page__>
+</head>
+<body>
+  <div id="tab-panel" style="text-align: center;"> <!-- skeleton that was given, I centered it. -->
+    <div data-tabname="Rock">Rock ...</div>
+    <div data-tabname="Chalk">Rock Chalk ...</div>
+    <div data-tabname="Jayhawk">Rock Chalk Jayhawk ...</div>
+    <div data-tabname="Go KU!">Rock Chalk Jayhawk - Go KU!</div>
+  </div>
+
+  <script>
+    function asTabs(node) { // function asTabs syntax help from chatgpt.
+      const childNodes = Array.from(node.children); // takes possible nodes and puts them in an array called childNodes
+
+      // Create buttons for each child element and add event listeners
+      const buttons = childNodes.map((child, index) => { // a button for child
+        const button = document.createElement("button"); // creates a button element for each
+        button.textContent = child.getAttribute("data-tabname"); // sets the button = to the data-tabname attribute
+        button.addEventListener("click", () => { // event listener awaits a click
+
+          childNodes.forEach((c) => { // Hide all child elements
+            c.style.display = "none"; // if a tab is not clicked on it will not be shown
+          });
+
+          // Show the selected child element
+          child.style.display = "block";
+
+          // Highlight the selected button
+          buttons.forEach((b) => {
+            b.style.backgroundColor = "blue"; // when not selected set the background to blue
+          });
+          button.style.backgroundColor = "red"; // change to red when selected
+        });
+
+        // Initially, hide all child elements except the first one
+        if (index !== 0) { //
+          child.style.display = "none"; // display nothing when buttons aren't pressed
+          button.style.backgroundColor = "blue"; // Sets the starting color for button when they aren't pressed to blue
+        } else {
+          button.style.backgroundColor = "red"; // Highlight the first button
+        }
+
+        return button; // return
+      });
+
+      buttons.forEach((button) => { // uses foreach function (built-in) and iterates though all the buttons in button
+        node.appendChild(button); // adds necessary buttons for each child
+      });
+    }
+
+    asTabs(document.querySelector("#tab-panel")); // Use #tab-panel to select by id
+  </script>
+</body>
+</html>
