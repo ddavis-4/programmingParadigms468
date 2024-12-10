@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DylanDavis_Assignment5</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <h1>EECS 461 Assignment 5:</h1>
+        <h2>Dylan Davis | 3047302</h2>
+    </div>
+
+    <div style="text-align: center;">
+        <h3>Data Set 1:</h3>
+        <canvas id="canvas1" width="400" height="400"></canvas>
+    </div>
+
+    <div style="text-align: center;">
+        <h3>Data Set 2:</h3>
+        <canvas id="canvas2" width="400" height="400"></canvas>
+    </div>
+
+    <script>
+        const results = [ //data set 1
+            {name: "Very Happy", count: 104, color: "orange"},
+            {name: "Happy", count: 63, color: "yellow"},
+            {name: "Neutral", count: 87, color: "blue"},
+            {name: "Unhappy", count: 51, color: "white"},
+            {name: "Very Unhappy", count: 26, color: "red"},
+            {name: "No Comment", count: 18, color: "grey"},
+        ];
+
+        const dataSet2 = [ // data set 2
+            {name: "Satisfied", count: 927, color: "yellow"},
+            {name: "Neutral", count: 213, color: "blue"},
+            {name: "Unsatisfied", count: 463, color: "red"},
+            {name: "No Comment", count: 510, color: "silver"},
+        ];
+
+        let cx = document.getElementById("canvas1").getContext("2d"); // sets cx to be canvas at id "canvas1"
+        const centerX = canvas1.width / 2, centerY = canvas1.height / 2; //calculates the values for the center of the canvas
+
+        let total = results.reduce((sum, {count}) => sum + count, 0); // total is = to reduce is a build in JS method that is used to sum results to one
+        let currentAngle = -0.5 * Math.PI; // calculate the current angle
+        for (let result of results) { // for loop let result of results
+            let sliceAngle = (result.count / total) * 2 * Math.PI; //
+            cx.beginPath(); // start the path
+            cx.arc(centerX, centerY, 100, currentAngle, currentAngle + sliceAngle); // arc from the calculated centers the calculated current angle slice
+            currentAngle += sliceAngle; //
+            cx.lineTo(centerX, centerY); // lines to the center of the chart
+            cx.fillStyle = result.color; // will each result with the color that is given
+            cx.fill(); // fill
+
+            // Calculate the position for the label
+            const labelX = centerX + Math.cos(currentAngle - 0.5 * sliceAngle) * 120;// calculate the x position for the labels
+            const labelY = centerY + Math.sin(currentAngle - 0.5 * sliceAngle) * 120; // calculate the y position for the labels
+
+            // this is to out line the labels it was difficult to see what label corresponded to which section of the graph
+            //so I made the text the same color as its graph segment, line 66 but this raised the issue of not being able to see the text when it was written over the graph
+            // my solution was to print the label again but in black and slightly offset in the canvas so as to create the affect of a outline
+            //outline
+            cx.fillStyle = "black"; // color black
+            cx.font = "bold 13px Georgia"; // font type and size
+            cx.fillText(result.name, labelX + 0.75, labelY + 0.75); // position notice it is off set from 70
+
+            // label
+            cx.fillStyle = result.color; // label color of graph
+            cx.font = "bold 13px Georgia"; //font for label
+            cx.fillText(result.name, labelX, labelY); // location and what to name the label
+        }
+        // I should have done this in one function however two made more sense to me because they print to different canvas and this is the same as above.
+        // but it points to a different canvas, and uses a different data set
+        //SAME AS ABOVE WITH DIFFERENT VARIABLES AND PRINTS TO A DIFFERENT CANVAS
+        const X = canvas2.width / 2, Y = canvas2.height / 2; //
+        let cz = document.getElementById("canvas2").getContext("2d");
+        let t = dataSet2.reduce((sum, {count}) => sum + count, 0);
+        let current = -0.5 * Math.PI;
+        for (let result of dataSet2) {
+            let sliceAngle = (result.count / t) * 2 * Math.PI;
+            cz.beginPath();
+            cz.arc(X, Y, 100, current, current + sliceAngle);
+            current += sliceAngle;
+            cz.lineTo(X, Y);
+            cz.fillStyle = result.color;
+            cz.fill();
+
+
+            const lX = X + Math.cos(current - 0.5 * sliceAngle) * 120;
+            const lY = Y + Math.sin(current - 0.5 * sliceAngle) * 120;
+
+
+            cz.fillStyle = "black";
+            cz.font = " bold 13px Georgia";
+            cz.fillText(result.name, lX + .75, lY + .75);
+
+
+            cz.fillStyle = result.color;
+            cz.font = " bold 13px Georgia";
+            cz.fillText(result.name, lX, lY);
+        }
+    </script>
+</body>
+</html>
