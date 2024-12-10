@@ -1,0 +1,134 @@
+<!__
+Dylan Davis
+EECS468
+Assignment 2 
+Start: 9/9/2023
+Last edit: 9/11/2023
+ __>
+
+<!doctype html>
+<html>
+	<head> <!__this is the heading, sets the title to be 'Assignment 2' __>
+		<meta charset = 'utf-8'>
+		<title>Assignment 2</title>
+	</head>
+
+	<body><!__in my research for this project I found that It helps to keep code in divisions in HTML so for the body all of my exercises are in their own divisions.__>
+
+		<div style="text-align: center;"><!__Here we center the whole division, as center tags obsolete__>
+			<h1>EECS 468 Assignment 2 </h1> <!__ Title for the page in HTML __>
+			<h4>Dylan Davis | 3047302</h4><!__Author__>
+			<br><!__space to make page look better __>
+		</div>
+		<!__this division is just html and the titles for the page, no exersises.__>
+
+		<!__This is the division for Exercise 2.1, once again centered in the div tag. I used buttons to call my JS functions, so when clicking the buttion named 'looping a triangle' it calls the function 'loopinT()' which I will explain later __>	
+		<div style="text-align: center;">
+			<h2>Exercise 2.1: The Looping Triangle</h2>
+			<h4>Press for Looping Triangle: </h4>
+			<button onclick = "loopinT()">Looping a Triangle</button></br>
+			<br>
+		</div>
+		<div id = "THETRIANGLE"> </div> <!__ this is the id value that the function will replace with the looped triangle after it has run. It is not inside the division because then it would be centered, and in the example it was not centered.__>
+
+		<!__This is the division for 2.2 fizz buzz, like before when pressing the button the JS function 'fizzbuzz()' is called. __>
+		<div style="text-align: center;"> 
+			<h2>Exercise 2.2: FizzBuzz</h2>
+			<h4>Press for FizzBuzz:</h4>
+			<button onclick = "fizzbuzz()">Generate</button></br>
+			<br>
+			<h5>Start:</h5><!__cosmetic __>
+			<div id = "hundo"> </div><!__This is the id value that will be replaced with the list of values created by the function __>
+			<h5>End</h5> <!__ cosmetic__>
+		</div>
+
+		<!__This is the division for 2.3, slightly different from before now we have 2 buttons each calling a different function, but those respective functions call another function that generates a grid based on a size parameter.__>
+		<div style="text-align: center;"> 
+			<h2>Exercise 2.3: n-by-n Grid</h2>
+			<h4>Size = 8:</h4>
+			<button onclick = "ateGrid()">N-by-N Grid</button></br>
+			<br>
+			<div id = 'eightGrid'> </div><!__value to be replaced when button is pressed__>
+			<br>
+			<h4>Size = 14:</h4>
+			<button onclick = "forteenGrid()">N-by-N Grid</button></br>
+			<br>
+			<div id = 'fourteenGrid'> </div><!__value to be replaced when button is pressed__>
+		</div>
+
+		<script>
+			//this is the function that is called when the button for excercise 2.1 is pressed 
+			function loopinT()
+			{
+				let thetriangle = '' //this creates an empty string that we will populate with the generated string to make it easier to display in HTML
+				for (let string = 'X'; string.length <= 10; string += 'X')//this generates the triangle so the string starts with 'X' and so long as the length of that string is less than or equal to 10 the loop will run. Adding an 'X' to the string for each time it runs.
+				{
+					thetriangle += string +'<br>';// in the loop here we are adding the string and a br to thetriangle 
+				}
+				document.getElementById('THETRIANGLE').innerHTML = thetriangle;// which we use right here, so we are replacing the value of THETRIANGLE in HTML above witht the string we made in the functin, thetriangle. 
+			}
+			//This is the function that is called when the generate button for fizzbuzz is presssed 
+			function fizzbuzz()
+			{
+				let HUNDO = '' // like before this is an empty string that I will populate later with the values generated in the function to then replace in the html code and display on the web page.
+				let doublewhammy ='This Number is divisible by both!' + '<br>'
+				let seven = 'This Number is Divisible by 7 ' + '<br>'
+				let four = 'This Number is Divisible by 4 ' + '<br>'
+				//^^ the three conditions for fizzbuzz 
+				for (let to100 = 1; to100 < 101; to100 += 1)//In this for loop we set to100 to equal 1 and as long as it is less than 101 the loop will continue, and it will add 1 to the value of to100 
+				{
+					if (to100 % 4 == 0 && to100 % 7 ==0)//if the value of to100 when it is divided by 4 and 7 has a remander of 0, if the number is divisible by both 4 and 7 then the condition below is followed
+					{
+						HUNDO += doublewhammy; //and it will add doublewhammy to the space in place of the number 
+					} else if (to100 % 4 == 0) //if it is divisible by 4
+					{
+						HUNDO += four // it will add the condion established above for four
+					} else if (to100 % 7 ==0)// same but if divisible by 7
+					{
+						HUNDO += seven // same as above, 
+					}else 
+					{
+						HUNDO += to100 + '<br>'; //Here if the number is not divisible by 4 or 7 it will just put the value of to100 at that time into the HUNDO
+					}
+					document.getElementById('hundo').innerHTML = HUNDO;// replacing the id hundo with the string generated in the function HUNDO
+				}
+			}
+
+			function nXmgrid(size)//function called when either of the N - by - N Grid buttons are pressed, size is a parameter.
+			{
+				grid = '' //empty string
+				for (let n = 0; n < size; n += 1)//the for loop sets n = 0 and as long as n is less than the size given then the loop will run and 1 will be added to n each time it runs.
+				{
+					let row = ''; // Another one (empty string)
+					for (let m = 0; m < size; m += 1) // same loop as before different variable
+					{
+						if((n + m) % 2 == 0)// if n + m is not even then print a ' ' to row (I couldnt find a way for the " " to be printed on the page so I used W's and M's to make my grid.)
+						{
+							row += ' W ';
+						}else 
+						{
+							row += " M ";//when it is odd add an M
+						}		
+					}
+					grid += row + '</br>'; //each row is added to the grid with a br as soon as it has reached the proper size		
+				}
+				return grid; // the grid is returned
+			}
+
+			function ateGrid()//function that is called for grid of size eight
+			{
+				const gridout = document.getElementById('eightGrid'); // here we set gridout to be the id eightGrid
+				const grid = nXmgrid(8);// generate the grid by calling the nXmGrid function
+				gridout.innerHTML = grid;// and here we are setting the gridout to be the grid we generated displaying it on the sceen.
+			}
+
+			function forteenGrid()//exact same as the other grid function except this calls for a size 14 grid
+			{
+				const gridout = document.getElementById('fourteenGrid');
+				const grid = nXmgrid(14);
+				gridout.innerHTML = grid;
+			}
+		</script>
+	</body>
+</html>
+<!__ __>
