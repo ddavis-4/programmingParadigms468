@@ -1,0 +1,38 @@
+<!__
+Dyan Davis
+3047302
+EECS 468
+writen and Commented: 9 / 1 / 2023
+__>
+
+
+
+<!doctype html> <!__every html file must start with this__>
+<html> <!__ html tag__>
+	<head> <!__ tag for the heading __>
+		<meta charset = “utf-8”> <!__ This lets the browers know that the document will be in UTF - 8, allowing it to display the correct characters __>
+		<title> Hello World! </title> <!__sets the title of the page to be 'Hello World!' __>
+	</head> <!__ closes head__>
+	<body> <!__ body tag__>
+		
+		<button onclick = "raiseAlert()">Test #1 for Hello World</button></br> <!__ this is the first button, when clicked it calls the function "raiseAlert" and it is named 'Test #1 for Hello World' __> 
+		<p id = "paragraph"> </p> <!__ this is the paragraph that will be altered when the second button is clicked, I left it empty.__>
+		<button onclick = "paragraphChange()">Test #2 for Hello World</button> <!__ second button calls function 'paragraph Change' and is named 'Test #2 for Hello World'__>
+		<!__ this is the java script code for the functions __>
+		<!__ the function raiseAlert() will raise the alert 'hello world' alert is build in __>
+		<!__ below is the java script code for the function 'paragraphChange' it works by first declaring element as a variable. Then, we get the HTML value at "paragraph". The line element.innerHTML represents the what we want to change the paragraph too, so when the button is pressed it is what is displayed.__>
+		<script> 
+			function raiseAlert() 
+			{
+				alert("hello world"); 
+			}
+			function paragraphChange() 
+			{ 
+				var element = document.getElementById("paragraph"); 
+				element.innerHTML = "Hello World!"; 
+			}
+		</script>
+	</body>
+</html>  
+
+
