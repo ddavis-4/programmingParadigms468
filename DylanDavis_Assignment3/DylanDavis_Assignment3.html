@@ -1,0 +1,115 @@
+<!__
+Dylan Davis
+EECS 468
+Assignment 3
+Start: 9/14/2023
+Edit: 9/14/2023
+ __>
+
+<!doctype html> <!__Start tag for HTML__>
+	<head><!__ Start tag for the head__>
+		<meta charset="utf-8"><!__ meta tag __>
+		<title>Assignment 3</title><!__ title __>
+	</head><!__ end of head __>
+
+	<body><!__start of body __>
+		<div style="text-align: center;"><!__division tag I centered it in the tags like assignment 2 __>
+			<h1>EECS 468: Assignment 3</h1><!__ heading for assignment__>
+			<p><!__ my name and id number__>
+				Dylan Davis | 3047302
+			</p><!__ ending__>
+
+		</div><!__ ending for division __>
+		<script type="text/javascript">
+             
+			class Group { //Class for group chatgpt helped with the syntax, however the logic and comments remain my own.
+            	constructor() { //This method is the constructor, it creates an empty array called values
+                	this.values = []; // this is where values the array is created.
+            	}
+
+            	add(value) { //method to add values to the array 
+                    if (!this.values.includes(value)) { // Check if the value to be added not already in the array, 'values'.
+                    	this.values.push(value); // If the value is not in the array, 'values' then add the value to the array.
+                	}
+            	}
+
+            	delete(value) { //method to delete values from the array called 'values'.
+                	const index = this.values.indexOf(value); // Defing a constant variable called index, and uses the indexOf method to return the index of 'value' in 'values' or it will return -1 if the 'value' is not in 'values' 
+                	if (index !== -1) {// if the index of the value is not -1 meaning that the value is in the array.
+                    	this.values.splice(index, 1); // Remove the value from the array using the splice method at the desired index
+                	}
+                	return this.values; //Returns the modified array 'values' with the desired element deleted
+            	}
+
+            	has(value) { //Method to see if a 'value' is in 'values' array 
+                	return this.values.includes(value); // this.values refers to the array 'values' and we are using the includes method which is build in java script and if 'value' is in 'values' it returns true and if not it returns false.
+            	}
+
+            	union(otherGroup) { // This is the union method the parameter otherGroup refers to another instance of the group class that we want to union with another array
+                	const result = new Group(); // Create a new Group instance, and calls it result
+           
+                	for (const value of this.values) { // for of loop that goes through each 'value' in the current array 'values' 
+                    	result.add(value); // add 'value' to 'result', the new group instance
+                	}
+
+                	
+                	for (const value of otherGroup.values) { //for every value in values the otherGroup add it to result as well  
+                    	result.add(value); // adding values of otherGroup to result 
+                	}
+
+                	return result; // return result
+            	}
+
+            	intersection(otherGroup) { // method to check intersection of 2 groups
+                	const result = new Group(); // Create a new Group instance and once again call it result
+
+                	
+                	for (const value of this.values) { // for all the 'value''s in 'values'
+                    	if (otherGroup.has(value)) { // if the value is in the otherGroup (group 2)
+                        	result.add(value); // add that 'value' to 'result'
+                    	}
+                	}
+
+                	return result; //return result 
+            	}
+
+            	difference(otherGroup) { // method for the difference
+                	const result = new Group(); // Create a new Group instance, and once again it will be the 'result'.
+
+                	
+                	for (const value of this.values) {// for 'value' of 'values'
+                    	if (!otherGroup.has(value)) {// if the 'value' is not in the 'otherGroup' 
+                        	result.add(value); // add that 'value' to 'result' the new instance of the class 
+                    	}
+                	}
+
+                	return result; // return result
+            	}
+        	}
+
+        	
+        	let group1 = new Group(); //creates one instance of the Group() class and call it group1
+        	let group2 = new Group(); //creates another instance of the Group() class and call it group2
+       		group1.add(1); //calls method add to add 1 to the group1
+        	group1.add(2); //^^ but adds 2
+        	group1.add(3); //^^ but adds 3
+        	group2.add(2); //^^ but adds 2 to group 2
+        	group2.add(3); //^^ but adds 3 to group 2
+        	group2.add(5); //^^ but adds 5 to group 2
+
+        	// Chatgpt helped with the syntax here, I was able to do everything in one line instead of having a document.write in the JS and <p> </p> paragraph tags in the HTML, here the paragraph tags go inside the document.write statment. 
+        	document.write('<p>a) Contents of Group 1: ' + group1.values + '</p>'); // This line inserts the paragraph tags into the HTML with 'document.write' and it will dipslay what is inside while also concatinating that with 'group1.values'
+        	document.write('<p>b) Contents of Group 2: ' + group2.values + '</p>'); // Same as above but with the array group2.values
+        	document.write('<p>c) Result of \'group1.has(5)\' : ' + group1.has(5) + '</p>'); //this line calls the method has on group 1 checking if 5 is in while concatinating the result with the paragraph tags before inserting it into the HTML and displaying it on the page.
+        	document.write('<p>d) Result of \'group2.has(3)\' : ' + group2.has(3) + '</p>'); //same as above but checking if group 2 has 3
+        	document.write('<p>e) Result of \'group1.union(group2)\' : ' + group1.union(group2).values + '</p>'); // this line does the same as the line above with the document.write but it calls the union method on group 1 and having group 2 be other 'otherGroup' 
+        	document.write('<p>f) Result of \'group1.intersection(group2)\' : ' + group1.intersection(group2).values + '</p>'); // same as above but for intersection 
+        	document.write('<p>g) Result of \'group1.difference(group2)\' : ' + group1.difference(group2).values + '</p>'); // same as above but for difference
+        	document.write('<p>h) Result of \'group1.delete(1)\' : ' + group1.delete(1) + '</p>'); // same as above but calls the delete method on group 1 and gets rid of 1
+        	document.write('<p>i) Result of \'group2.delete(1)\' : ' + group2.delete(1) + '</p>'); // ame as above but does it for group 2 
+ 
+		</script> <!__ Ending tag for your script __>
+
+
+	</body> <!__ Ending tag for the body __>
+</html> <!__ Ending tag for the HTMl__>

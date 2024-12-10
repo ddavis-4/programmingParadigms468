@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My home page</title>
+	</head>
+	<body>
+		<canvas></canvas>
+		<script>
+			let cx = document.querySelector("canvas").getContext("2d");
+			cx.beginPath(); //start path
+			cx.moveTo(50, 10); //move to peak of triangle
+			cx.lineTo(10, 70); //draw left line of triangle
+			cx.lineTo(90, 70); //draw bottom line of triangle
+			cx.fill(); //close triangle and fill it
+		</script>
+	</body>
+</html>
